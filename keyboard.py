@@ -1,6 +1,5 @@
-import json
-
 from main import bot
+import json
 
 
 def get_button(text, color):

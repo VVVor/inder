@@ -1,4 +1,3 @@
-from database import creat_dbase
 from keyboard import sender
 from main import *
 
@@ -6,11 +5,11 @@ from main import *
 for event in bot.longpoll.listen():
     if event.type == VkEventType.MESSAGE_NEW and event.to_me:
         request = event.text.lower()
-        user_id = str(event.user_id)
+        user_id = event.user_id
         msg = event.text.lower()
         sender(user_id, msg.lower())
         if request == 'начать поиск':
-            creat_dbase()
+            creating_dbase()
             bot.write_msg(user_id, f'Привет, {bot.name(user_id)}')
             bot.find_user(user_id)
             bot.write_msg(event.user_id, f'Нашёл для тебя пару, жми на кнопку "Вперёд"')
@@ -24,3 +23,5 @@ for event in bot.longpoll.listen():
 
         else:
             bot.write_msg(event.user_id, 'Твоё сообщение непонятно')
+
+
